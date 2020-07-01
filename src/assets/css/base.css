@@ -1,0 +1,31 @@
+@import './normalize.css';  
+/* 引入css */
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+/* 定义变量 */
+:root{   
+    --color-text: #666;   
+    --color-hight-text:#ff5777;
+    --color-tint:#ff8189;
+    --color-background:#fff;
+    --font-size:14px;
+    --line-height: 1.5;
+}
+
+
+/*  清除浮动 */
+.clear-fix::after{
+    clear: both;
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+    visibility: hidden;
+}
+.clear-fix{
+    zoom: 1;
+}
