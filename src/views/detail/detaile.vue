@@ -31,6 +31,8 @@ import Scroll from "components/common/scroll/scroll";
 import { debounce } from "components/common/utils"; //引入工具类的函数
 import { itmeLisentMixin, backtopMixin } from "components/common/mixin";
 
+import { mapActions } from 'vuex';//映射actions中的方法
+
 import {
   GetDetail,
   Goods,
@@ -70,6 +72,9 @@ export default {
     detailbuttomBar
   },
   methods: {
+
+    ...mapActions(['addCart']),//映射actions中的方法名
+
     imageLode() {
       this.$refs.scroll.refresh();
       this.getThemeTopY();
@@ -107,11 +112,16 @@ export default {
       product.desc = this.goods.desc;
       product.price = this.goods.realPrice;
       product.iid = this.iid;
-      //  向vuex中填入数据     !vuex中的细节，
-      this.$store.dispatch("addCart", product).then(res=>{
+
+       //掌握知识点一、可以是由promise  二、映射actions
+      //  向vuex中填入数据     !vuex中的细节， 
+      // this.$store.dispatch("addCart", product).then(res=>{
+      //   console.log(res);
+      // });
+      this.addCart(product).then(res=>{ //映射后的写法
         console.log(res);
         
-      });
+      })
     }
   },
   //生命周期 - 创建完成（访问当前this实例）
