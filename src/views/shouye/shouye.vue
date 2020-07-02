@@ -20,7 +20,7 @@
     >
       <homerecommend :recommend="recommend" @swiperimageload="swiperimageload" />
 
-      <fluent />
+      <fluent :imageList="banners" @bannerLoad="bannerLoad"/>
       <tabcontrol :titles="['流行','新款','经典']" @tabclick="tabclick" ref="tabcontrol2" />
       <goodslist :goods="goods[currentindex].list" />
     </scroll>
@@ -72,7 +72,7 @@ export default {
       saveY: 0
     };
   },
-  mixins:[itmeLisentMixin],//混入 
+  mixins:[itmeLisentMixin],//混入
   activated() {  //只有组件被缓存后才有此方法
     // console.log("进入组件？？？");
     this.$refs.scroll.scrollTo(0, this.saveY, 0);
@@ -107,7 +107,6 @@ export default {
   },
   methods: {
     tabclick(index) {
-      // console.log(index);
       switch (index) {
         case 0:
           this.currentindex = "pop";
@@ -143,7 +142,6 @@ export default {
     morecontent() {
       this.homeGoods(this.currentindex);
       this.$refs.scroll.scroll.refresh(); //图片加载完后，更新，解决bug！重新计算可滚动的区域，图片加载问题
-      // console.log("上拉加载更多")
     },
     swiperimageload() {
       this.tabcontrol = this.$refs.tabcontrol2.$el.offsetTop;
@@ -152,11 +150,9 @@ export default {
 
     homerequest() {
       homerequest().then(res => {
-        // console.log(res);
+        console.log(res);
         this.banners = res.data.banner.list;
         this.recommend = res.data.recommend.list;
-        // this.dKeyword = res.data.dKeyword;
-        // this.keywords = res.data.keywords;
       });
     },
     homeGoods(type) {
@@ -164,10 +160,13 @@ export default {
       homeGoods(type, page).then(res => {
         this.goods[type].list.push(...res.data.list);
         this.goods[type].page += 1; //保证page页面的正确
-        // console.log(this.goods[type].list);
         this.$refs.scroll.finishpullup(); //多次上拉加载更多
       });
-    }
+    },
+      bannerLoad(){
+          //轮播图加载完成重新计算高度
+          this.morecontent()
+      }
   }
 };
 </script>
