@@ -2,8 +2,11 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-// import VueAwesomeSwiper from 'vue-awesome-swiper'
-// import 'swiper/css/swiper.css'
+import Vant from 'vant';
+import 'vant/lib/index.css';
+import { Lazyload } from 'vant';
+Vue.use(Lazyload);
+Vue.use(Vant);
 
 Vue.config.productionTip = false
 
@@ -21,7 +24,7 @@ Router.prototype.push = function push(location) {
 
 
 Vue.prototype.$bus=new Vue()   //事件传递，到没有关联的组件，非父子组件的通信，事件总线$bus
-// 1. Vue.prototype.$bus=new Vue() 
+// 1. Vue.prototype.$bus=new Vue()
 // 2.  this.$bus.$emit("ItemImageLoade")
 //  this.$bus.$on("ItemImageLoade", () => { }
 

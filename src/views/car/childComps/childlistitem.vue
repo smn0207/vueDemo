@@ -70,7 +70,7 @@ export default {
   /* margin-left: 45px; */
 }
 .child-img img {
-  width: 140px;
+  width: 100%;
   height: 140px;
 }
 .child_content {

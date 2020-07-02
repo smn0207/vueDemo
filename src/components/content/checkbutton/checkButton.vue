@@ -29,7 +29,7 @@ mounted() {
 
 <style scoped>
 /* @import url(); 引入css类 */
-img{ 
+img{
   width: 100%;
   height: 100%;
   }
@@ -37,6 +37,6 @@ div{
   display: inline-block;
 }
 .activ{
-  background-color: tomato;
+  background-color: orange;
 }
 </style>
