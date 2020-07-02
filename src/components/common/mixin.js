@@ -18,8 +18,6 @@ export const itmeLisentMixin = {
       refresh();
     };
     this.$bus.$on("ItemImageLoade", this.itemShouyimagelode);
-    console.log('我是混入中的事件');
-
   }
 }
 
